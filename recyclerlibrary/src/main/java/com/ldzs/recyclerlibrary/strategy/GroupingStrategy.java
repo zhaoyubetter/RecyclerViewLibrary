@@ -41,25 +41,35 @@ public class GroupingStrategy {
         //同步整个列表数据变化
         adapter.setHasStableIds(true);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+                refreshIndexItems();
+            }
+
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                refreshIndexItems();
+            }
+
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
                 refreshIndexItems();
-                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onItemRangeRemoved(int positionStart, int itemCount) {
                 super.onItemRangeRemoved(positionStart, itemCount);
                 refreshIndexItems();
-                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
                 super.onItemRangeMoved(fromPosition, toPosition, itemCount);
                 refreshIndexItems();
-                adapter.notifyDataSetChanged();
             }
         });
     }
