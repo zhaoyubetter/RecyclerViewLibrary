@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.getItemAnimator().setRemoveDuration(300);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        SimpleAdapter adapter = SimpleAdapter.createFromResource(this, R.array.List);
+        SimpleAdapter adapter = SimpleAdapter.createFromResource(this, R.array.RecyclerView_List);
         recyclerView.setAdapter(adapter);
         recyclerView.setOnItemClickListener((v, position) -> {
             Intent intent = new Intent(this, ListActivity.class);
